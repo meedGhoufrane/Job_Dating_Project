@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\announcement;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 class AnnouncementController extends Controller
@@ -12,7 +13,10 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        //
+        
+            $announcements = announcement::all();
+            return view('admin.announcement.index', compact('announcements'));
+        
     }
 
     /**
@@ -20,7 +24,9 @@ class AnnouncementController extends Controller
      */
     public function create()
     {
-        //
+        $companies = Company::all();
+        return view('admin.announcement.create',compact('companies'));
+
     }
 
     /**
@@ -28,7 +34,22 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $request->validate([
+            'title' => 'required',
+            'discription' => 'required',
+            'company_id	' => 'required'
+        ]);
+
+    
+        announcement::create([
+            'title' => $request->name,
+            'discription' => $request->discription,
+            'company_id' => $request->company_id ,
+            
+        ]);
+
+        return redirect()->route('announcements.index')->with('success', 'Company created successfully');
     }
 
     /**

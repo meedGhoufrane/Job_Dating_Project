@@ -12,7 +12,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $companies = Company::all();
+        return view('admin.companies.index', compact('companies'));
     }
 
     /**
@@ -20,7 +21,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.companies.create');
     }
 
     /**
@@ -28,7 +29,18 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'discription' => 'required',
+        ]);
+
+    
+        Company::create([
+            'name' => $request->name,
+            'discription' => $request->discription,
+        ]);
+
+        return redirect()->route('companies.index')->with('success', 'Company created successfully');
     }
 
     /**
@@ -36,7 +48,7 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        //
+        return view('admin.companies.show', compact('company'));
     }
 
     /**
@@ -44,15 +56,27 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return view('admin.companies.edit', compact('company'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Company $company)
-    {
-        //
+    public function update(Request $request,Company $company)
+    {   
+        
+        $request->validate([
+            'name' => 'required',
+            'discription' => 'required',
+        ]);
+       
+        $company->update([
+            'name' => $request->name,
+            'discription' => $request->discription,
+            
+        ]);
+
+        return redirect()->route('companies.index')->with('success', 'Company updated successfully');
     }
 
     /**
@@ -60,6 +84,7 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        $company->delete();
+        return redirect()->route('companies.index')->with('success', 'Company deleted successfully');
     }
 }
