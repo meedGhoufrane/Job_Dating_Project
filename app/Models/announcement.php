@@ -9,7 +9,12 @@ class announcement extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'title','discription','company_id'
+        'title','description','company_id'
 
     ];
+
+    public function Company()
+    {
+        return $this->belongsTo(Company::class);
+    }
 }

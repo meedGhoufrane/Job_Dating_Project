@@ -34,22 +34,21 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $request->validate([
             'title' => 'required',
-            'discription' => 'required',
-            'company_id	' => 'required'
+            'description' => 'required',
         ]);
 
     
         announcement::create([
-            'title' => $request->name,
-            'discription' => $request->discription,
+            'title' => $request->title,
+            'description' => $request->description,
             'company_id' => $request->company_id ,
             
         ]);
 
-        return redirect()->route('announcements.index')->with('success', 'Company created successfully');
+        return redirect()->route('announcements.index')->with('success', 'announcement created successfully');
     }
 
     /**
@@ -65,7 +64,8 @@ class AnnouncementController extends Controller
      */
     public function edit(announcement $announcement)
     {
-        //
+        $companies = Company::all();
+        return view('admin.announcement.edit',compact('companies','announcement'));
     }
 
     /**
@@ -81,6 +81,7 @@ class AnnouncementController extends Controller
      */
     public function destroy(announcement $announcement)
     {
-        //
+        $announcement->delete();
+        return redirect()->route('announcements.index')->with('success', 'announcement deleted successfully');
     }
 }

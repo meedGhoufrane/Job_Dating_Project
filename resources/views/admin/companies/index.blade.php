@@ -65,7 +65,8 @@
                     <form action="{{route('companies.destroy',$companie->id)}}" method="post">
                         @csrf
                         @method('DELETE')
-                    <button class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</button></form>
+                    <button class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</button>
+                </form>
                 </td>
             </tr>
                 

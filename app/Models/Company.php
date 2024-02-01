@@ -15,6 +15,7 @@ class Company extends Model
 
     public function announcements()
     {
-        return $this->belongsToMany;
+        return $this->belongsToMany(Announcement::class);
     }
+    
 }
