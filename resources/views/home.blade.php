@@ -26,7 +26,9 @@
 
 <body>
     <nav class="flex justify-between items-center mb-4">
-        <a href="index.html"><img class="w-24" src="images/logo.png" alt="" class="logo" /></a>
+        <a href="index.html"><img class="w-24"
+                src="{{ asset('images/job-search-conceptual-logo-vector-31711898.jpg') }}" alt=""
+                class="logo" /></a>
         <ul class="flex space-x-6 mr-6 text-lg">
             <li>
                 @if (Route::has('login'))
@@ -84,43 +86,42 @@
         <div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4">
             <!-- Item 1 -->
             @foreach ($announcements as $announcement)
-                
-            <div class="bg-gray-50 border border-gray-200 rounded p-6">
-                <div class="flex">
-                    <img class="hidden w-48 mr-6 md:block" src="images/acme.png" alt="" />
-                    <div>
-                        <h3 class="text-2xl">
-                            <a href="show.html">{{$announcement->title}}</a>
-                        </h3>
-                        <div class="text-xl font-bold mb-4">{{$announcement->description}}</div>
-                        <ul class="flex">
-                            <li
-                            
-                                class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
-                                <a href="#">{{ $announcement->company->name }}</a>
-                            </li>
-                            <li
-                                class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
-                                <a href="#">API</a>
-                            </li>
-                            <li
-                                class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
-                                <a href="#">Backend</a>
-                            </li>
-                            <li
-                                class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
-                                <a href="#">Vue</a>
-                            </li>
-                        </ul>
-                        <div class="text-lg mt-4">
-                            <i class="fa-solid fa-location-dot"></i> Boston,
-                            MA
+                <div class="bg-gray-50 border border-gray-200 rounded p-6">
+                    <div class="flex">
+                        <img class="hidden w-48 mr-6 md:block" src="{{ asset('images/pngtree-hand-holdi.jpg') }}"
+                            alt="" />
+                        <div>
+                            <h3 class="text-2xl">
+                                <a href="show.html">{{ $announcement->title }}</a>
+                            </h3>
+                            <div class="text-xl font-bold mb-4">{{ $announcement->description }}</div>
+                            <ul class="flex">
+                                <li
+                                    class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
+                                    <a href="#">{{ $announcement->company->name }}</a>
+                                </li>
+                                <li
+                                    class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
+                                    <a href="#">API</a>
+                                </li>
+                                <li
+                                    class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
+                                    <a href="#">Backend</a>
+                                </li>
+                                <li
+                                    class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
+                                    <a href="#">Vue</a>
+                                </li>
+                            </ul>
+                            <div class="text-lg mt-4">
+                                <i class="fa-solid fa-location-dot"></i> Boston,
+                                MA
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             @endforeach
-            
+
         </div>
     </main>
     <footer class="bg-white dark:bg-gray-900">
@@ -128,9 +129,10 @@
             <div class="md:flex md:justify-between">
                 <div class="mb-6 md:mb-0">
                     <a href="https://flowbite.com/" class="flex items-center">
-                        <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 me-3" alt="FlowBite Logo" />
-                        <span
-                            class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">FindJob</span>
+                        <a href="index.html"><img class="w-14 h-14"
+                                src="{{ asset('images/job-search-conceptual-logo-vector-31711898.jpg') }}"
+                                alt="" class="logo" /></a>
+
                     </a>
                 </div>
                 <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
