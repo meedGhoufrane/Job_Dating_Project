@@ -31,8 +31,9 @@
     @endif
 
 <section class="max-w-4xl p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-20">
-    <form  action="{{route('announcements.store')}}" method="POST">
+    <form  action="{{route('announcements.update',$announcement->id)}}" method="POST">
         @csrf
+        @method('PUT')
         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
                 <label class="text-white dark:text-gray-200" for="username">Title</label>
