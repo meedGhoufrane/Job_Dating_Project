@@ -92,7 +92,7 @@
                         <h3 class="text-2xl">
                             <a href="show.html">{{$announcement->title}}</a>
                         </h3>
-                        <div class="text-xl font-bold mb-4">{{$announcement->discription}}</div>
+                        <div class="text-xl font-bold mb-4">{{$announcement->description}}</div>
                         <ul class="flex">
                             <li
                             

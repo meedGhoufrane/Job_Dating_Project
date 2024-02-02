@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DashController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/',[HomeController::class,'index']);
 Route::get('/dashboard',[DashController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 
