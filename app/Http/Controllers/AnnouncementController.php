@@ -56,7 +56,7 @@ class AnnouncementController extends Controller
      */
     public function show(announcement $announcement)
     {
-        //
+        return view('singelpage',compact('announcement'));
     }
 
     /**
