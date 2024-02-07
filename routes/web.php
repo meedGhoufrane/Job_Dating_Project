@@ -18,19 +18,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[HomeController::class,'index']);
-Route::get('/dashboard',[DashController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/dashboard',[DashController::class,'index'])->middleware(['auth','role:admin'])->name('dashboard');
 
 
 
-Route::resource('announcements',AnnouncementController::class);
-Route::resource('companies',companyController::class);
+Route::resource('announcements', AnnouncementController::class);
+Route::resource('companies', companyController::class);
 
 
-
-// Route::get('/hello', function () {
-//     return view('hello');
-// });
+    // Route::get('/hello', function () {
+    //     return view('hello');
+    // });
 
 
 
@@ -48,4 +47,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
+
+

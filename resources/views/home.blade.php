@@ -22,6 +22,12 @@
         };
     </script>
     <title>Find Jobs Projects</title>
+    <style>
+        #h {
+            background: #EF4444;
+            border-radius: 8%;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,8 +39,10 @@
             <li>
                 @if (Route::has('login'))
                     @auth
-                        <a href="{{ url('/dashboard') }}"
-                            class="font-semibold text-gray-600 hover:text-gray-900 dark:text-dark dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboards</a>
+                        @if (auth()->user()->hasRole('admin'))
+                            <a href="{{ url('/dashboard') }}"
+                                class="font-semibold text-gray-600 hover:text-gray-900 dark:text-dark dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboards</a>
+                        @endif
                     @else
                         <a href="{{ route('login') }}"
                             class="font-semibold text-gray-60 dark:text-red-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
@@ -47,6 +55,25 @@
                     @endauth
                 @endif
             </li>
+            @auth
+
+                <li>
+                    <div>welcome {{ Auth::user()->name }}</div>
+                </li>
+
+                <li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <x-dropdown-link id="h" :href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-dropdown-link>
+                    </form>
+                </li>
+
+
+            @endauth
         </ul>
     </nav>
 
@@ -98,7 +125,7 @@
                             <ul class="flex">
                                 <li
                                     class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
-                                    <a href="#">{{ $announcement->company->name }}</a>
+                                    <a href="#"></a>
                                 </li>
                                 <li
                                     class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
@@ -114,8 +141,7 @@
                                 </li>
                             </ul>
                             <div class="text-lg mt-4">
-                                <i class="fa-solid fa-location-dot"></i> Boston,
-                                MA
+                                <i class="fa-solid fa-location-dot"></i> {{ $announcement->company->name }}
                             </div>
                         </div>
                     </div>

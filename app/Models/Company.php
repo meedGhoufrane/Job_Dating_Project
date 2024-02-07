@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Company extends Model
 {
     use HasFactory;
+    // use SoftDeletes;
     protected $fillable = [
         'name','discription'
 
@@ -15,7 +16,14 @@ class Company extends Model
 
     public function announcements()
     {
-        return $this->belongsToMany(Announcement::class);
+        return $this->hasMany(Announcement::class);
     }
+
+    // public static function boot(){
+    //     parent::boot();
+    //     static::deleting(function(Company $partner){
+    //         $partner->adverts()->delete();
+    //     });
+    // }
     
 }

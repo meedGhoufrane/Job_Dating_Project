@@ -68,27 +68,22 @@ class AnnouncementController extends Controller
         return view('admin.announcement.edit',compact('companies','announcement'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, announcement $announcement)
-    {
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-        ]);
-        // ddd($announcement);
+{
+    $request->validate([
+        'title' => 'required',
+        'description' => 'required',
+    ]);
 
-    
-        $announcement->updated([
-            'title' => $request->title,
-            'description' => $request->description,
-            'company_id' => $request->company_id ,
-            
-        ]);
+    $announcement->update([
+        'title' => $request->title,
+        'description' => $request->description,
+        'company_id' => $request->company_id,
+    ]);
 
-        return redirect()->route('announcements.index')->with('success', 'announcement update successfully');
-    }
+    return redirect()->route('announcements.index')->with('success', 'announcement updated successfully');
+}
 
     /**
      * Remove the specified resource from storage.
