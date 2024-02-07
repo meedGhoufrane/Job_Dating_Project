@@ -39,10 +39,10 @@
             <li>
                 @if (Route::has('login'))
                     @auth
-                        @if (auth()->user()->hasRole('admin'))
+                        
                             <a href="{{ url('/dashboard') }}"
                                 class="font-semibold text-gray-600 hover:text-gray-900 dark:text-dark dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboards</a>
-                        @endif
+                
                     @else
                         <a href="{{ route('login') }}"
                             class="font-semibold text-gray-60 dark:text-red-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
