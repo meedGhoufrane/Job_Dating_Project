@@ -23,13 +23,17 @@
                         <x-nav-link :href="route('announcements.index')" :active="request()->routeIs('announcement')">
                             {{ __('Announcement') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users')">
+                            {{ __('users') }}
+                        </x-nav-link>
+                    @endif
+                    @if (auth()->user()->hasRole('user'))
                         <x-nav-link :href="route('skills.index')" :active="request()->routeIs('skills')">
                             {{ __('skills') }}
                         </x-nav-link>
+                    @endif
 
-
-                    </div>
-                @endif
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

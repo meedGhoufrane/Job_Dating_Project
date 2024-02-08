@@ -9,8 +9,9 @@ class skills extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name'
-
-    ];
+    protected $fillable = ['name'];
+    public function users()
+    {
+        return $this->morphedByMany(User::class, 'skillbles');
+    }
 }

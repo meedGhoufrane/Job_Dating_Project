@@ -6,6 +6,7 @@ use App\Http\Controllers\DashController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SkillsController;
+use App\Http\Controllers\userController;
 use App\Models\skills;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,7 @@ Route::get('/dashboard', [DashController::class, 'index'])->middleware(['auth'])
 Route::resource('announcements', AnnouncementController::class);
 Route::resource('companies', companyController::class);
 Route::resource('skills', SkillsController::class);
+Route::resource('users', userController::class);
 
 
     // Route::get('/hello', function () {
