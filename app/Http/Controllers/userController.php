@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class userController extends Controller
 {
     public function index()
     {
-        $user = user::latest()->paginate(6);
+        $user = User::latest()->paginate(100);
         return view('admin.users.index', compact('user'));
     }
 
@@ -18,7 +18,7 @@ class userController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        return view('admin.users.create');
     }
 
     /**
@@ -28,13 +28,18 @@ class userController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
         ]);
 
         User::create([
             'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+
         ]);
 
-        return redirect()->route('user.index')->with('success', 'user created successfully');
+        return redirect()->route('users.index')->with('success', 'user created successfully');
     }
 
     /**
@@ -50,34 +55,36 @@ class userController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.user.edit', compact('skill'));
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, user $user)
+    public function update(Request $request, User $user)
     {
         $request->validate([
             'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
         ]);
 
         $user->update([
             'name' => $request->name,
+            'email' => $request->name,
+            'password' => $request->name,
         ]);
 
-        return redirect()->route('user.index')->with('success', 'Skill updated successfully');
+        return redirect()->route('users.index')->with('success', 'user updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(user $user)
+    public function destroy(User $user)
     {
 
         $user->delete();
-        return redirect()->route('user.index')->with('success', 'Skill deleted successfully');
+        return redirect()->route('users.index')->with('success', 'user deleted successfully');
     }
 }
-
-

@@ -35,13 +35,23 @@
 
     <section class="max-w-4xl p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-20">
 
-        <form action="{{ route('skills.update', $skill->id) }}" method="POST">
+        <form action="{{ route('users.update', $user->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                 <div>
-                    <label class="text-white dark:text-gray-200" for="username">name of skills</label>
-                    <input value="{{ $skill->name }}" id="name" name="name" type="text"
+                    <label class="text-white dark:text-gray-200" for="username">name </label>
+                    <input value="{{ $user->name }}" id="name" name="name" type="text"
+                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                </div>
+                <div>
+                    <label class="text-white dark:text-gray-200" for="username">  email</label>
+                    <input value="{{ $user->email }}" id="email" name="email" type="email"
+                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                </div>
+                <div>
+                    <label class="text-white dark:text-gray-200" for="username">password</label>
+                    <input id="password" name="password" type="text"
                         class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
                 </div>
             </div>
