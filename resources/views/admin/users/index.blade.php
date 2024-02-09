@@ -50,7 +50,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($user as $user)
+                @foreach ($users as $user)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-600">
 
                         <th scope="row"
@@ -77,6 +77,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{$users->links()}}
     </div>
 
 

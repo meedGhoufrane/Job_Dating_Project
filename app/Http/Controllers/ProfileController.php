@@ -21,7 +21,7 @@ class ProfileController extends Controller
     {
         $skills = skills::all();
         return view('profile.edit', [
-            'user' => $request->user(),'skills'=>$skills
+            'user' => $request->user(), 'skills' => $skills
         ]);
     }
 
@@ -40,6 +40,20 @@ class ProfileController extends Controller
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
+    public function updateSkills(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'skills' => ['required'],
+        ]);
+
+        auth()->user()->skills()->sync($request->skills);
+
+
+        // $request->user()->save();
+
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    }
+
 
     /**
      * Delete the user's account.

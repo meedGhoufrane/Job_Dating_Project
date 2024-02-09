@@ -47,6 +47,6 @@ class User extends Authenticatable
 
     public function skills(): MorphToMany
     {
-        return $this->morphedByMany(skills::class, 'skillbles');
+        return $this->morphedByMany(skills::class, 'skillbles','skillbles','skill_id','skillbles_id');
     }
 }

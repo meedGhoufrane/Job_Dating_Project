@@ -70,6 +70,7 @@
 
             </tbody>
         </table>
+        {{$skills->links()}}
     </div>
 
 

@@ -12,7 +12,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::all();
+        $companies = Company::paginate(2);
         return view('admin.companies.index', compact('companies'));
     }
 
@@ -34,7 +34,7 @@ class CompanyController extends Controller
             'discription' => 'required',
         ]);
 
-    
+
         Company::create([
             'name' => $request->name,
             'discription' => $request->discription,
@@ -62,18 +62,18 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,Company $company)
-    {   
-        
+    public function update(Request $request, Company $company)
+    {
+
         $request->validate([
             'name' => 'required',
             'discription' => 'required',
         ]);
-       
+
         $company->update([
             'name' => $request->name,
             'discription' => $request->discription,
-            
+
         ]);
 
         return redirect()->route('companies.index')->with('success', 'Company updated successfully');
