@@ -40,18 +40,19 @@ class ProfileController extends Controller
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
+
     public function updateSkills(Request $request): RedirectResponse
     {
         $request->validate([
-            'skills' => ['required'],
+            'skills' => ['required', 'array'],
+            'skills.*' => ['exists:skills,id'],
         ]);
 
-        auth()->user()->skills()->sync($request->skills);
+        $user = auth()->user();
 
+        $user->skills()->sync($request->skills);
 
-        // $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return redirect()->route('profile.edit')->with('status', 'profile-updated');
     }
 
 
