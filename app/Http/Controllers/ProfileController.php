@@ -21,7 +21,7 @@ class ProfileController extends Controller
     {
         $skills = skills::all();
         return view('profile.edit', [
-            'user' => $request->user(), 'skills' => $skills
+            'user' => $request->user(), 'skills' => $skills 
         ]);
     }
 
@@ -50,7 +50,7 @@ class ProfileController extends Controller
 
         $user = auth()->user();
 
-        $user->skills()->sync($request->skills);
+        $user->skills()->sync($request->skills);    
 
         return redirect()->route('profile.edit')->with('status', 'profile-updated');
     }

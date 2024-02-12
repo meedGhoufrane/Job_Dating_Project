@@ -26,12 +26,12 @@
                         <x-nav-link :href="route('users.index')" :active="request()->routeIs('users')">
                             {{ __('users') }}
                         </x-nav-link>
-                    @endif
-                    @if (auth()->user()->hasRole('user'))
+                   
+                    
+                        @endif
                         <x-nav-link :href="route('skills.index')" :active="request()->routeIs('skills')">
                             {{ __('skills') }}
                         </x-nav-link>
-                    @endif
 
                 </div>
             </div>

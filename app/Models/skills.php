@@ -14,4 +14,8 @@ class skills extends Model
     {
         return $this->morphedByMany(User::class, 'skillbles')->withTimestamps();
     }
+    public function announcements()
+    {
+        return $this->morphedByMany(announcement::class, 'skillbles')->withTimestamps();
+    }
 }

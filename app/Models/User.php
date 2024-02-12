@@ -45,8 +45,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function skills(): MorphToMany
-    {
-        return $this->morphedByMany(skills::class, 'skillbles','skillbles','skill_id','skillbles_id');
-    }
+        public function skills(): MorphToMany
+        {
+            return $this->morphedByMany(skills::class, 'skillbles','skillbles','skillbles_id','skill_id');
+        }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\announcement;
 use App\Models\Company;
+use App\Models\skills;
 use Illuminate\Http\Request;
 
 class AnnouncementController extends Controller
@@ -12,8 +13,8 @@ class AnnouncementController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        
+    {     
+            $skills = skills::all();   
             $announcements = announcement::paginate(5);
             return view('admin.announcement.index', compact('announcements'));
         
@@ -24,8 +25,10 @@ class AnnouncementController extends Controller
      */
     public function create()
     {
+        
+        $skills = skills::all();   
         $companies = Company::all();
-        return view('admin.announcement.create',compact('companies'));
+        return view('admin.announcement.create',compact('companies','skills'));
 
     }
 
@@ -41,13 +44,12 @@ class AnnouncementController extends Controller
         ]);
 
     
-        announcement::create([
+        $announcement=announcement::create([
             'title' => $request->title,
             'description' => $request->description,
             'company_id' => $request->company_id ,
-            
         ]);
-
+        $announcement->skills()->sync($request->skills);
         return redirect()->route('announcements.index')->with('success', 'announcement created successfully');
     }
 
