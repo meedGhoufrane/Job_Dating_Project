@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\announcement;
+use App\Models\apply;
 use App\Models\Company;
 use App\Models\skills;
 use Illuminate\Http\Request;
@@ -41,6 +42,7 @@ class AnnouncementController extends Controller
         $request->validate([
             'title' => 'required',
             'description' => 'required',
+            'date' => 'required',
         ]);
 
     
@@ -48,6 +50,8 @@ class AnnouncementController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'company_id' => $request->company_id ,
+            'date' => $request->date,
+            
         ]);
         $announcement->skills()->sync($request->skills);
         return redirect()->route('announcements.index')->with('success', 'announcement created successfully');
@@ -76,12 +80,14 @@ class AnnouncementController extends Controller
     $request->validate([
         'title' => 'required',
         'description' => 'required',
+        'date' => 'date'
     ]);
 
     $announcement->update([
         'title' => $request->title,
         'description' => $request->description,
         'company_id' => $request->company_id,
+        'date' => $request->date,
     ]);
 
     return redirect()->route('announcements.index')->with('success', 'announcement updated successfully');
@@ -94,5 +100,39 @@ class AnnouncementController extends Controller
     {
         $announcement->delete();
         return redirect()->route('announcements.index')->with('success', 'announcement deleted successfully');
+    }
+
+    public function recordapply(Request $request, announcement $announcement)
+    {
+        
+        $this->validateJobInterviewDay($announcement);
+        
+        apply::create([
+            'user_id' => auth()->id(),
+            'announcement_id' => $announcement->id,
+        ]);
+
+        return redirect()->back()->with('success', 'apply recorded successfully');
+    }
+
+
+    public function unrecordapply(Request $request, announcement $announcement)
+    {
+        $announcement->unrecordapply(auth()->id());
+
+        return redirect()->back()->with('success', 'apply unrecorded successfully');
+    }
+
+    protected function validateJobInterviewDay(announcement $announcement)
+    {
+        $announcementDate = $announcement->date;
+
+        if ($announcementDate < now()->toDateString()) {
+            abort(403, 'Job interview day has already passed.');
+        }
+
+        if ($announcement->apply()->where('user_id', auth()->id())->exists()) {
+            abort(403, 'apply already recorded for this announcement.');
+        }
     }
 }

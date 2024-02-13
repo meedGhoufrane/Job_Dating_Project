@@ -51,6 +51,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::put('/profile', [ProfileController::class, 'updateSkills'])->name('profile.updateSkills');
+    Route::post('/announcements/{announcement}/record-apply', [AnnouncementController::class, 'recordapply'])
+    ->name('announcements.recordapply');
+
+Route::delete('/announcements/{announcement}/unrecord-apply', [AnnouncementController::class, 'unrecordapply'])
+    ->name('announcements.unrecordapply');
 });
 
 require __DIR__ . '/auth.php';

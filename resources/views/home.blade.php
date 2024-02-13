@@ -89,7 +89,7 @@
         </div>
     </section>
 
-    <main>
+    <main id="announcementApp">
         <!-- Search -->
         <form action="">
             <div class="relative border-2 border-gray-100 m-4 rounded-lg">
@@ -107,10 +107,10 @@
             </div>
         </form>
 
-        <div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4">
+        <div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4" id="announcementContainer">
             <!-- Item 1 -->
             @foreach ($announcements as $announcement)
-                <div class="bg-gray-50 border border-gray-200 rounded p-6">
+                <div class="announcement-card bg-gray-50 border border-gray-200 rounded p-6">
                     <div class="flex">
                         <img class="hidden w-48 mr-6 md:block" src="{{ asset('images/pngtree-hand-holdi.jpg') }}"
                             alt="" />
@@ -146,10 +146,12 @@
                         class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Read
                         More</a>
 
+
                 </div>
             @endforeach
-
         </div>
+        <div id="pagination" class="mt-4 flex justify-center"></div>
+
     </main>
     <footer class="bg-white dark:bg-gray-900">
         <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
@@ -255,3 +257,59 @@
 </body>
 
 </html>
+
+{{-- <script>
+    const announcementsPerPage = 5; // Number of announcements per page
+    const totalAnnouncements = {{ count($announcements) }};
+    const totalPages = Math.ceil(totalAnnouncements / announcementsPerPage);
+    let currentPage = 1;
+    let cardCounter = 0; 
+
+    function showPage(pageNumber) {
+        const startIndex = (pageNumber - 1) * announcementsPerPage;
+        const endIndex = pageNumber * announcementsPerPage;
+
+        // Hide all announcements
+        const cards = document.querySelectorAll('.announcement-card');
+        cards.forEach(card => {
+            card.style.display = 'none';
+        });
+
+        // Show announcements for the current page
+        for (let i = startIndex; i < endIndex && i < totalAnnouncements; i++) {
+            const card = document.getElementById(`card${i}`);
+            if (card) {
+                card.style.display = 'block';
+            }
+        }
+    }
+
+    function renderPaginationButtons() {
+        const paginationDiv = document.getElementById('pagination');
+        paginationDiv.innerHTML = '';
+
+        for (let i = 1; i <= totalPages; i++) {
+            const button = document.createElement('button');
+            button.textContent = i;
+            button.classList.add('pagination-button', 'px-3', 'py-1', 'rounded', 'mx-1', 'focus:outline-none');
+
+            if (i === currentPage) {
+                button.classList.add('bg-gray-900', 'text-white');
+            } else {
+                button.classList.add('bg-gray-300');
+            }
+
+            button.addEventListener('click', () => {
+                currentPage = i;
+                showPage(currentPage);
+                renderPaginationButtons();
+            });
+
+            paginationDiv.appendChild(button);
+        }
+    }
+
+    // Initial setup
+    showPage(currentPage);
+    renderPaginationButtons();
+</script> --}}

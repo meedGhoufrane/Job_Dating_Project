@@ -11,7 +11,7 @@ class announcement extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'title','description','company_id'
+        'title','description','company_id','date'
 
     ];
 
@@ -22,5 +22,19 @@ class announcement extends Model
     public function skills(): MorphToMany
     {
         return $this->morphedByMany(skills::class, 'skillbles','skillbles','skillbles_id','skill_id');
+    }
+    public function apply()
+        {
+            return $this->hasMany(apply::class);
+        }
+
+        public function hasUserRecordedapply($userId)
+    {
+        return $this->apply()->where('user_id', $userId)->exists();
+    }
+
+    public function unrecordapply($userId)
+    {
+        $this->apply()->where('user_id', $userId)->delete();
     }
 }

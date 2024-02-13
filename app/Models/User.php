@@ -49,4 +49,8 @@ class User extends Authenticatable
         {
             return $this->morphedByMany(skills::class, 'skillbles','skillbles','skillbles_id','skill_id');
         }
+        public function apply()
+        {
+            return $this->hasMany(apply::class);
+        }
 }

@@ -41,6 +41,9 @@
                         skills
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        Date
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Action
                     </th>
                 </tr>
@@ -64,8 +67,11 @@
                         </td>
                         <td class="px-6 py-4">
                             @foreach ($announcement->skills as $skill)
-                                {{ $skill->name . ' , ' }}
+                            {{ $skill->name . ' , ' }}
                             @endforeach
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $announcement->date }}
                         </td>
 
                         <td class="flex items-center px-6 py-4">
