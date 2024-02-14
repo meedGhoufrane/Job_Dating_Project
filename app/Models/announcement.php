@@ -38,26 +38,26 @@ class announcement extends Model
         $this->apply()->where('user_id', $userId)->delete();
     }
 
-    // public function calculateSkillMatchPercentage($user, $threshold = 60)
-    // {
-    //     if ($user && $user->skills && $user->skills->count() > 0) {
-    //         $userSkills = $user->skills->pluck('id')->toArray();
-    //         $announcementSkills = $this->skills->pluck('id')->toArray();
+    public function calculateSkillMatchPercentage($user, $threshold = 60)
+    {
+        if ($user && $user->skills && $user->skills->count() > 0) {
+            $userSkills = $user->skills->pluck('id')->toArray();
+            $announcementSkills = $this->skills->pluck('id')->toArray();
 
-    //         $commonSkillsCount = count(array_intersect($userSkills, $announcementSkills));
-    //         $totalSkillsCount = count($announcementSkills);
+            $commonSkillsCount = count(array_intersect($userSkills, $announcementSkills));
+            $totalSkillsCount = count($announcementSkills);
 
-    //         $matchPercentage = $totalSkillsCount > 0 ? ($commonSkillsCount / $totalSkillsCount) * 100 : 0;
-    //         $isMatchAboveThreshold = $matchPercentage >= $threshold;
+            $matchPercentage = $totalSkillsCount > 0 ? ($commonSkillsCount / $totalSkillsCount) * 100 : 0;
+            $isMatchAboveThreshold = $matchPercentage >= $threshold;
 
-    //         return [
-    //             'matchPercentage' => $matchPercentage,
-    //             'isMatchAboveThreshold' => $isMatchAboveThreshold,
-    //         ];
-    //     }
-    //     return [
-    //         'matchPercentage' => 0,
-    //         'isMatchAboveThreshold' => false,
-    //     ];
-    // }
+            return [
+                'matchPercentage' => $matchPercentage,
+                'isMatchAboveThreshold' => $isMatchAboveThreshold,
+            ];
+        }
+        return [
+            'matchPercentage' => 0,
+            'isMatchAboveThreshold' => false,
+        ];
+    }
 }

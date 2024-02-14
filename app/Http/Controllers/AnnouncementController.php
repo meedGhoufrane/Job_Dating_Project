@@ -15,10 +15,20 @@ class AnnouncementController extends Controller
      */
     public function index()
     {     
-            $skills = skills::all();   
-            $announcements = announcement::paginate(5);
-            return view('admin.announcement.index', compact('announcements'));
         
+            $skills = skills::all();   
+            $user = auth()->user();
+            $announcementsWithMatchInfo = [];
+            foreach (Announcement::latest()->paginate(10) as $announcement) {
+                $matchInfo = $announcement->calculateSkillMatchPercentage($user);
+    
+                $announcementsWithMatchInfo[] = [
+                    'announcement' => $announcement,
+                    'matchPercentage' => $matchInfo['matchPercentage'],
+                    'isMatchAboveThreshold' => $matchInfo['isMatchAboveThreshold'],
+                ];
+            }
+    return view('admin.announcement.index', compact('announcementsWithMatchInfo','skills'));
     }
 
     /**
@@ -135,10 +145,6 @@ class AnnouncementController extends Controller
             abort(403, 'apply already recorded for this announcement.');
         }
     }
-
-
-
-
 
     
 }

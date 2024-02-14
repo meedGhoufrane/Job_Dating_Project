@@ -44,12 +44,15 @@
                         Date
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        compability
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Action
                     </th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($announcements as $announcement)
+                @foreach ($announcementsWithMatchInfo as $info)
                     <tr
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="w-4 p-4">
@@ -57,27 +60,42 @@
                         </td>
                         <th scope="row"
                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $announcement->title }}
+                            {{ $info['announcement']->title }}
                         </th>
                         <td class="px-6 py-4">
-                            {{ $announcement->description }}
+                            {{ $info['announcement']->description }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $announcement->Company->name }}
+                            {{ $info['announcement']->Company->name }}
                         </td>
                         <td class="px-6 py-4">
-                            @foreach ($announcement->skills as $skill)
+                            @foreach ($info['announcement']->skills as $skill)
                                 {{ $skill->name . ' , ' }}
                             @endforeach
                         </td>
                         <td class="px-6 py-4">
-                            {{ $announcement->date }}
+                            {{ $info['announcement']->date }}
                         </td>
 
+                        @auth
+
+                            @if ($info['isMatchAboveThreshold'])
+                                <td class="text-green-600 text-sm font-semibold">
+                                    Matched
+                                </td>
+                            @else
+                                <td class="text-red-600 text-sm font-semibold">
+                                    Not Enough Skills Matched
+                                </td>
+                            @endif
+
+                        @endauth
+
                         <td class="flex items-center px-6 py-4">
-                            <a href="{{ route('announcements.edit', $announcement->id) }}"
+                            <a href="{{ route('announcements.edit', $info['announcement']->id) }}"
                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            <form action="{{ route('announcements.destroy', $announcement->id) }}" method="post">
+                            <form action="{{ route('announcements.destroy', $info['announcement']->id) }}"
+                                method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button
@@ -88,7 +106,7 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $announcements->links() }}
+        {{-- {{ $announcementsWithMatchInfo->links() }} --}}
     </div>
 
 
