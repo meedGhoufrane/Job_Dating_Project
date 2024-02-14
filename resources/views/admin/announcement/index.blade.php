@@ -67,7 +67,7 @@
                         </td>
                         <td class="px-6 py-4">
                             @foreach ($announcement->skills as $skill)
-                            {{ $skill->name . ' , ' }}
+                                {{ $skill->name . ' , ' }}
                             @endforeach
                         </td>
                         <td class="px-6 py-4">

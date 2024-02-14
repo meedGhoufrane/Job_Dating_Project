@@ -135,4 +135,10 @@ class AnnouncementController extends Controller
             abort(403, 'apply already recorded for this announcement.');
         }
     }
+
+
+
+
+
+    
 }

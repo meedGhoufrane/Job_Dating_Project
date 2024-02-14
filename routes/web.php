@@ -35,7 +35,27 @@ Route::resource('users', userController::class);
     // Route::get('/hello', function () {
     //     return view('hello');
     // });
-
+    // Route::get('announcements', [AnnouncementController::class, 'index']);
+    // Route::post('announcements', [AnnouncementController::class, 'store']);
+    
+    // Route::get('announcements/create', [AnnouncementController::class, 'create']);
+    // Route::get('announcements/{announcement}', [AnnouncementController::class, 'show']);
+    // Route::get('announcements/{announcement}/edit', [AnnouncementController::class, 'edit']);
+    // Route::put('announcements/{announcement}', [AnnouncementController::class, 'update']);
+    // Route::delete('announcements/{announcement}', [AnnouncementController::class, 'destroy']);
+    
+    // // Similarly for other resources
+    // Route::get('companies', [CompanyController::class, 'index']);
+    // Route::post('companies', [CompanyController::class, 'store']);
+    
+    // Route::get('companies/create', [CompanyController::class, 'create']);
+    // Route::get('companies/{company}', [CompanyController::class, 'show']);
+    // Route::get('companies/{company}/edit', [CompanyController::class, 'edit']);
+    // Route::put('companies/{company}', [CompanyController::class, 'update']);
+    // Route::delete('companies/{company}', [CompanyController::class, 'destroy']);
+    
+    // Routes for 'skills' and 'users' similarly
+    
 
 
 

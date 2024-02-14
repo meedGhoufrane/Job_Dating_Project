@@ -16,7 +16,7 @@ class Company extends Model
 
     public function announcements()
     {
-        return $this->hasMany(Announcement::class);
+        return $this->hasMany(announcement::class);
     }
 
     // public static function boot(){

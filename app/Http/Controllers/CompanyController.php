@@ -46,14 +46,16 @@ class CompanyController extends Controller
     /**
      * Display the specified resource.
      */
+
     public function show(Company $company)
     {
         return view('admin.companies.show', compact('company'));
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      */
+
     public function edit(Company $company)
     {
         return view('admin.companies.edit', compact('company'));
@@ -69,11 +71,9 @@ class CompanyController extends Controller
             'name' => 'required',
             'discription' => 'required',
         ]);
-
         $company->update([
             'name' => $request->name,
             'discription' => $request->discription,
-
         ]);
 
         return redirect()->route('companies.index')->with('success', 'Company updated successfully');
