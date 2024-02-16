@@ -13,30 +13,23 @@
         </div>
     </div>
 
-    {{-- <section class="bg-white dark:bg-gray-900 h-screen flex items-center justify-center">
+    <section class="bg-white dark:bg-gray-900 h-screen flex items-center justify-center">
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
 
                     <div class="p-6 bg-white border-b border-gray-200 dark:border-gray-700">
-                        <h3 class="text-lg font-semibold mb-2">Announcements Count:</h3>
-                        <p>{{ $announcementCount }}</p>
+                        <h3 class="text-lg font-semibold mb-2"> skill most popular :</h3>
+                        <p>{{ $skillmostpopular }}</p>
+
                     </div>
 
-                    <div class="p-6 bg-white border-b border-gray-200 dark:border-gray-700">
-                        <h3 class="text-lg font-semibold mb-2">Companies Count:</h3>
-                        <p>{{ $companyCount }}</p>
-                    </div>
 
-                    <div class="p-6 bg-white border-b border-gray-200 dark:border-gray-700">
-                        <h3 class="text-lg font-semibold mb-2">Users Count:</h3>
-                        <p>{{ $userCount }}</p>
-                    </div>
 
                 </div>
             </div>
         </div>
-    </section> --}}
+    </section>
 </x-app-layout>
 
 @push('scripts')

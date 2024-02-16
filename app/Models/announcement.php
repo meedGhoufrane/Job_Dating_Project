@@ -60,4 +60,10 @@ class announcement extends Model
             'isMatchAboveThreshold' => false,
         ];
     }
+
+    // public function countskillpopuler(){
+    //     $skillmostpopular = announcement::count();
+    
+
+    // }
 }

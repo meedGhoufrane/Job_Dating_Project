@@ -92,7 +92,6 @@ class AnnouncementController extends Controller
         'description' => 'required',
         'date' => 'date'
     ]);
-
     $announcement->update([
         'title' => $request->title,
         'description' => $request->description,
@@ -128,7 +127,7 @@ class AnnouncementController extends Controller
 
     public function unrecordapply(Request $request, announcement $announcement)
     {
-        $announcement->unrecordapply(auth()->id());
+        $announcement->unrecordapply(auth()->id());  
 
         return redirect()->back()->with('success', 'apply unrecorded successfully');
     }
@@ -145,6 +144,7 @@ class AnnouncementController extends Controller
             abort(403, 'apply already recorded for this announcement.');
         }
     }
+    
 
     
 }
