@@ -21,7 +21,6 @@
                     <div class="p-6 bg-white border-b border-gray-200 dark:border-gray-700">
                         <h3 class="text-lg font-semibold mb-2"> skill most popular :</h3>
                         <p>{{ $skillmostpopular }}</p>
-
                     </div>
 
 
